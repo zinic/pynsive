@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 try:
-    from setuptools import setup, find_packages1
+    from setuptools import setup, find_packages
     from setuptools.command import easy_install
 except ImportError:
     from ez_setup import use_setuptools
     use_setuptools()
-
-from setuptools import setup, find_packages
-from setuptools.command import easy_install
+    from setuptools import setup, find_packages
+    from setuptools.command import easy_install
 
 import sys
 from os import path
 from distutils.core import setup
 from distutils.extension import Extension
+
 
 def read(relative):
     contents = open(relative, 'r').read()
@@ -22,11 +22,12 @@ def read(relative):
 def ez_install(package):
     easy_install.main(["-U", package])
 
+
 setup(
     name='pynsive',
     version='0.0.1',
     description=('A Python plugin and introspection'
-        ' library prounounced, "pensive."'),
+                 ' library prounounced, "pensive."'),
     author='John Hopper',
     author_email='john.hopper@jpserver.net',
     url='https://github.com/zinic/pynsive',

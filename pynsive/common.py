@@ -12,4 +12,3 @@ def import_module(module_name):
     A nice namespace alias for users.
     """
     return importlib.import_module(module_name)
-

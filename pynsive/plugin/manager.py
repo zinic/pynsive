@@ -26,4 +26,3 @@ class PluginManager(object):
         modules.
         """
         [self.finder.add_path(path) for path in paths]
-
