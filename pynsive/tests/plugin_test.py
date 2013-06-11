@@ -69,5 +69,5 @@ class WhenLoading(unittest.TestCase):
                 test_type, test_module.PynsiveTestingClass)
             return not same and is_subclass
 
-        classes = pynsive.list_classes('pynsive_test', type_filter)
+        classes = pynsive.list_classes('pynsive_test', subclasses_only)
         self.assertEqual(len(classes), 1)
