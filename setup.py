@@ -23,12 +23,13 @@ def ez_install(package):
     easy_install.main(["-U", package])
 
 setup(
-    name='pygmscr',
+    name='pynsive',
     version='0.0.1',
-    description='Python Game Master Screen',
+    description=('A Python plugin and introspection'
+        ' library prounounced, "pensive."'),
     author='John Hopper',
     author_email='john.hopper@jpserver.net',
-    url='https://github.com/zinic/pygmscr',
+    url='https://github.com/zinic/pynsive',
     license='Apache 2.0',
     classifiers=[
         'Development Status :: 3 - Alpha',
