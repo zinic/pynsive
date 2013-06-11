@@ -25,7 +25,7 @@ def ez_install(package):
 
 setup(
     name='pynsive',
-    version='0.1.0',
+    version='0.1.1',
     description=('A Python plugin and introspection'
                  ' library prounounced, "pensive."'),
     author='John Hopper',
