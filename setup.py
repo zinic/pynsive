@@ -33,7 +33,7 @@ setup(
     url='https://github.com/zinic/pynsive',
     license='Apache 2.0',
     classifiers=[
-        'Development Status :: 3 - Beta',
+        'Development Status :: 4 - Beta',
         'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: Implementation :: CPython',
