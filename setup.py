@@ -25,7 +25,7 @@ def ez_install(package):
 
 setup(
     name='pynsive',
-    version='0.0.1',
+    version='0.0.2',
     description=('A Python plugin and introspection'
                  ' library prounounced, "pensive."'),
     author='John Hopper',
@@ -34,7 +34,6 @@ setup(
     license='Apache 2.0',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Environment :: Console',
         'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: Implementation :: CPython',
@@ -46,6 +45,4 @@ setup(
     test_suite='nose.collector',
     zip_safe=False,
     include_package_data=True,
-    packages=find_packages(exclude=['ez_setup']),
-    cmdclass=cmdclass,
-    ext_modules=ext_modules)
+    packages=find_packages(exclude=['ez_setup']))
