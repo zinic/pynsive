@@ -1,1 +1,2 @@
-from pynsive.plugin import PluginManager
+from pynsive.plugin.manager import PluginManager
+
