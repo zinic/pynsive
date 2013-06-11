@@ -70,6 +70,5 @@ def discover_classes(module, type_filter=None):
     classes = list()
     mnames = discover_modules(module)
     for mname in mnames:
-        print('Scanning {}'.format(mname))
         [classes.append(c) for c in list_classes(mname, type_filter)]
     return classes
