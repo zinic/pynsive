@@ -23,7 +23,8 @@ class OtherPynsiveTestingClass(PynsiveTestingClass):
 
 class WhenLoading(unittest.TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         """
         This crazy setUp method for the following unit tests creates a
         temporary plugin directory and then drops a Python module and related
@@ -41,16 +42,18 @@ class WhenLoading(unittest.TestCase):
         self.plugin_manager = pynsive.PluginManager()
         self.plugin_manager.plug_into(self.directory)
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
+        self.plugin_manager.destroy()
         if self.directory:
             shutil.rmtree(self.directory)
 
     def test_plugging_into_directory(self):
         """
-        When plugging into a directory using a PluginManager, the manager will
-        make the new directory available for search when importing modules.
-        These modules must be available for import via the import_module
-        function provided by pynsive.
+        When plugging into a directory using a PluginManager, the manager
+        will make the new directory available for search when importing
+        modules. These modules must be available for import via the
+        import_module function provided by pynsive.
         """
 
         test_module = pynsive.import_module('pynsive_test.test_classes')
@@ -70,4 +73,32 @@ class WhenLoading(unittest.TestCase):
             return not same and is_subclass
 
         classes = pynsive.list_classes('pynsive_test', subclasses_only)
+        self.assertEqual(len(classes), 1)
+
+    def test_discovering_modules(self):
+        stock_path_packages = [
+            'pynsive.plugin.manager',
+            'pynsive.plugin.loader']
+        plugin_path_packages = ['pynsive_test.test_classes']
+        self.assertEqual(
+            plugin_path_packages,
+            pynsive.discover_modules('pynsive_test'))
+        self.assertEqual(
+            stock_path_packages,
+            pynsive.discover_modules('pynsive.plugin'))
+
+    def test_discovering_classes(self):
+        classes = pynsive.discover_classes('pynsive_test')
+        self.assertEqual(2, len(classes))
+
+    def test_discovering_classes_with_filter(self):
+        test_module = pynsive.import_module('pynsive_test.test_classes')
+
+        def subclasses_only(test_type):
+            same = test_type is not test_module.PynsiveTestingClass
+            is_subclass = issubclass(
+                test_type, test_module.PynsiveTestingClass)
+            return not same and is_subclass
+
+        classes = pynsive.discover_classes('pynsive_test', subclasses_only)
         self.assertEqual(len(classes), 1)

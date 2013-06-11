@@ -25,7 +25,7 @@ def ez_install(package):
 
 setup(
     name='pynsive',
-    version='0.0.2',
+    version='0.1.0',
     description=('A Python plugin and introspection'
                  ' library prounounced, "pensive."'),
     author='John Hopper',
@@ -33,7 +33,7 @@ setup(
     url='https://github.com/zinic/pynsive',
     license='Apache 2.0',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 3 - Beta',
         'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: Implementation :: CPython',
