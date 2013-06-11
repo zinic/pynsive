@@ -3,7 +3,10 @@
 
 This is a simple plugin library that uses the sys.meta_path list along with custom finder and loader definitions to hook into the Python import process.
 
-For more information on the import process hooks, please see: [PEP-302](http://www.python.org/dev/peps/pep-0302/)
+For more information on the import process hooks, please see:
+
+* [Python 3 Import Process](http://docs.python.org/3/reference/import.html)
+* [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
 ## Usage
 

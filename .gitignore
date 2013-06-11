@@ -7,9 +7,9 @@ dist/
 *.c
 *.so
 .idea
-Meniscus_Portal.egg-info/
 #*
 .tox
 *.DS_Store*
 nosetests.xml
 *coverage.xml
+pynsive.egg-info/
