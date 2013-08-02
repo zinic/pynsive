@@ -1,7 +1,7 @@
 # Pynsive
 #### Pronounced, "Pensive"
 
-This is a simple plugin library that uses the *sys.meta_path* list along with custom finder and loader definitions to hook into the Python import process.
+This is a simple plugin library that uses the **sys.meta_path** list along with custom finder and loader definitions to hook into the Python import process.
 
 For more information on the import process hooks, please see:
 
@@ -13,9 +13,9 @@ For more information on the import process hooks, please see:
 #### Creating a Plugin Context
 
 The plugin context is a nice way of managing what directories you've plugged
-into the *sys.meta_path* variable. Managers may be destroyed when no longer
+into the **sys.meta_path** variable. Managers may be destroyed when no longer
 needed. Destroying a manager removes all directories that the manager
-plugged into from the *sys.meta_path* variable.
+plugged into from the **sys.meta_path** variable.
 
 ```python
 import pynsive
