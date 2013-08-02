@@ -33,6 +33,7 @@ finally:
 
 ```python
 import pynsive
+import test_module
 
 plugin_manager = pynsive.PluginManager()
 plugin_manager.plug_into('/some/path')
@@ -43,7 +44,7 @@ try:
         is_subclass = issubclass(type_to_test, test_module.MyClass)
         return not same and is_subclass
 
-    classes = pynsive.list_classes('pynsive_test', subclasses_only)
+    classes = pynsive.list_classes('ext.plugins', subclasses_only)
 finally:
     plugin_manager.destroy()
 ```
