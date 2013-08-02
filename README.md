@@ -70,7 +70,7 @@ finally:
 ```
 
 ## Unit Test Examples
-* [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/pynsive/tests/plugin_test.py)
+* [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py)
 
 ##That Legal Thing...
 
