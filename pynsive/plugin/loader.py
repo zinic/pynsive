@@ -6,12 +6,21 @@ from ..common import *
 
 
 class LoaderError(ImportError):
+    """
+    This error is thrown when the module loader encounters an exception or
+    an unrecoverable state while attempting to load a dynamically located
+    module.
+    """
 
     def __init__(self, msg):
         self.msg = msg
 
 
 class ModuleLoader(object):
+    """
+    As per PEP302, this module loader provides all of the necessarry context
+    for loading a python file and executing its contents.
+    """
 
     def __init__(self, module_path, module_name, load_target, is_pkg):
         self.module_path = module_path
@@ -20,12 +29,20 @@ class ModuleLoader(object):
         self.is_pkg = is_pkg
 
     def _read_code(self):
+        """
+        Simple abstraction to make reading a module file easy.
+        """
         fin = open(self.load_target, 'r')
         code = fin.read()
         fin.close()
         return code
 
     def load_module(self, fullname):
+        """
+        Loads a module's code and sets the module's expected hidden
+        variables. For more information on these variables and what they
+        are for, please see PEP302.
+        """
         if fullname != self.module_name:
             raise LoaderError(
                 'Requesting a module that the loader is unaware of.')
@@ -50,15 +67,27 @@ class ModuleLoader(object):
 
 
 class ModuleFinder(object):
+    """
+    As per PEP302, this module loader provides all of the necessarry context
+    for dynamically locating python modules based. This finder searches
+    directories based on paths added to its internal list of available
+    search directories.
+    """
 
-    def __init__(self, paths=list()):
-        self.paths = paths
+    def __init__(self, paths=None):
+        self.paths = paths ? paths : list()
 
     def add_path(self, new_path):
+        """
+        Adds a path to search through when attempting to look up a module.
+        """
         if new_path not in self.paths:
             self.paths.append(new_path)
 
     def find_module(self, fullname, path=None):
+        """
+        Searches the paths for the required module.
+        """
         module_path = os.path.join(*fullname.split(MODULE_PATH_SEP))
 
         for plugin_path in self.paths:

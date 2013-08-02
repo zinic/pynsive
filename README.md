@@ -10,8 +10,26 @@ For more information on the import process hooks, please see:
 
 ## Usage
 
-* [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/pynsive/tests/plugin_test.py)
+#### Creating a Plugin Context
 
+The plugin context is a nice way of managing what directories you've plugged
+into the sys.meta_path variable. Managers may be destroyed when no longer
+needed. Destroying a manager removes all directories that the manager
+plugged into from the sys.meta_path variable.
+
+```python
+import pynsive
+
+plugin_manager = pynsive.PluginManager()
+plugin_manager.plug_into('/some/path')
+try:
+#   Some code goes here
+finally:
+    plugin_manager.destroy()
+```
+
+## Unit Test Examples
+* [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/pynsive/tests/plugin_test.py)
 
 ##That Legal Thing...
 
