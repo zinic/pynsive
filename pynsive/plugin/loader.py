@@ -75,7 +75,7 @@ class ModuleFinder(object):
     """
 
     def __init__(self, paths=None):
-        self.paths = paths ? paths : list()
+        self.paths = paths if paths else list()
 
     def add_path(self, new_path):
         """
