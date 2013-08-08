@@ -17,13 +17,17 @@ def _list_classes(module, type_filter):
 
 
 def _should_use_module(module):
+    """
+    Checks to make sure that the passed module has the correct hidden
+    variables set.
+    """
     return hasattr(module, PATH_ATTRUBITE) and len(module.__path__) > 0
 
 
 def _scan_paths_for(mname, paths):
     mpath_part = mname.replace(MODULE_PATH_SEP, os.sep)
-    for path in paths:
-        scan_target = os.path.join(path, mpath_part)
+    for mpath in paths:
+        scan_target = os.path.join(mpath, mpath_part)
         is_dir = os.path.isdir(scan_target)
         is_file = os.path.isfile('{}.py'.format(scan_target))
         if is_dir or is_file:
