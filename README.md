@@ -72,6 +72,9 @@ finally:
 ## Unit Test Examples
 * [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py)
 
+## Beginner's Tutorial
+* [Getting started with Pynsive](http://www.giantflyingsaucer.com/blog/?p=4634)
+
 ##That Legal Thing...
 
 This software library is released to you under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). See [LICENSE](https://github.com/zinic/pynsive/blob/master/LICENSE) for more information.
