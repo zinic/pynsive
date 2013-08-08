@@ -83,8 +83,7 @@ class WhenLoading(unittest.TestCase):
         self.assertEqual(
             plugin_path_packages,
             pynsive.discover_modules('pynsive_test'))
-        self.assertEqual(
-            stock_path_packages,
+        self.assertListEqual(stock_path_packages,
             pynsive.discover_modules('pynsive.plugin'))
 
     def test_discovering_classes(self):
