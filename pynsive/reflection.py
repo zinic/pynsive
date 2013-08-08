@@ -43,14 +43,14 @@ def _scan_dir(directory):
 
 def list_classes(mname, type_filter=None):
     """
-    Attempts to list all of the clases within a specified module. This
+    Attempts to list all of the classes within a specified module. This
     function works for modules located in the default path as well as
     extended paths via the sys.meta_path hooks.
 
     If a type filter is set, it will be called with each class as its
     parameter. This filter's return value must be interpretable as a
     boolean. Results that evaluate as True will include the type in the
-    list of returned classes. Results that evaluate as False will excluse
+    list of returned classes. Results that evaluate as False will exclude
     the type in the list of returned classes.
     """
     found = list()
@@ -66,7 +66,7 @@ def discover_modules(mname):
     works for modules located in the default path as well as extended paths
     via the sys.meta_path hooks.
 
-    This funciton carries the expectation that the hidden module variable
+    This function carries the expectation that the hidden module variable
     '__path__' has been set correctly.
     """
     found = list()
@@ -94,7 +94,7 @@ def discover_classes(module, type_filter=None):
     If a type filter is set, it will be called with each class as its
     parameter. This filter's return value must be interpretable as a
     boolean. Results that evaluate as True will include the type in the
-    list of returned classes. Results that evaluate as False will excluse
+    list of returned classes. Results that evaluate as False will exclude
     the type in the list of returned classes.
     """
     classes = list()

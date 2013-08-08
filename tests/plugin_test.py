@@ -24,7 +24,7 @@ class OtherPynsiveTestingClass(PynsiveTestingClass):
 class WhenLoading(unittest.TestCase):
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         """
         This crazy setUp method for the following unit tests creates a
         temporary plugin directory and then drops a Python module and related
@@ -32,21 +32,21 @@ class WhenLoading(unittest.TestCase):
         a pynsive.PluginManager instance.
         """
 
-        self.directory = tempfile.mkdtemp()
-        self.module_path = os.path.join(self.directory, 'pynsive_test')
-        os.mkdir(self.module_path)
-        with open(os.path.join(self.module_path, '__init__.py'), 'w') as f:
+        cls.directory = tempfile.mkdtemp()
+        cls.module_path = os.path.join(cls.directory, 'pynsive_test')
+        os.mkdir(cls.module_path)
+        with open(os.path.join(cls.module_path, '__init__.py'), 'w') as f:
             f.write(INIT_PY)
-        with open(os.path.join(self.module_path, 'test_classes.py'), 'w') as f:
+        with open(os.path.join(cls.module_path, 'test_classes.py'), 'w') as f:
             f.write(TEST_CLASSES_PY)
-        self.plugin_manager = pynsive.PluginManager()
-        self.plugin_manager.plug_into(self.directory)
+        cls.plugin_manager = pynsive.PluginManager()
+        cls.plugin_manager.plug_into(cls.directory)
 
     @classmethod
-    def tearDownClass(self):
-        self.plugin_manager.destroy()
-        if self.directory:
-            shutil.rmtree(self.directory)
+    def tearDownClass(cls):
+        cls.plugin_manager.destroy()
+        if cls.directory:
+            shutil.rmtree(cls.directory)
 
     def test_plugging_into_directory(self):
         """
@@ -77,8 +77,8 @@ class WhenLoading(unittest.TestCase):
 
     def test_discovering_modules(self):
         stock_path_packages = [
-            'pynsive.plugin.manager',
-            'pynsive.plugin.loader']
+            'pynsive.plugin.loader',
+            'pynsive.plugin.manager']
         plugin_path_packages = ['pynsive_test.test_classes']
         self.assertEqual(
             plugin_path_packages,
