@@ -18,7 +18,7 @@ class LoaderError(ImportError):
 
 class ModuleLoader(object):
     """
-    As per PEP302, this module loader provides all of the necessarry context
+    As per PEP302, this module loader provides all of the necessary context
     for loading a python file and executing its contents.
     """
 
@@ -68,7 +68,7 @@ class ModuleLoader(object):
 
 class ModuleFinder(object):
     """
-    As per PEP302, this module loader provides all of the necessarry context
+    As per PEP302, this module loader provides all of the necessary context
     for dynamically locating python modules based. This finder searches
     directories based on paths added to its internal list of available
     search directories.
