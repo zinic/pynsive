@@ -14,8 +14,8 @@ For more information on the import process hooks, please see:
 Upgrading to this version has the following changes from the previous
 release (0.1.4).
 
-* discover_classes was renamed to rlist_classes
-* discover_modules was renamed to list_modules
+* **discover_classes** was renamed to **rlist_classes**
+* **discover_modules** was renamed to **list_modules**
 
 
 ### Usage
