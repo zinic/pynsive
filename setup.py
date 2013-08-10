@@ -20,7 +20,7 @@ def ez_install(package):
 
 setup(
     name='pynsive',
-    version='0.1.4',
+    version='0.1.5',
     description=("""A Python plugin and introspection library pronounced,
 "pensive." This library allows a developer to introduce plugins via PEP 302
 and allows for class searching via type and inheritance introspections.
