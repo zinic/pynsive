@@ -5,23 +5,14 @@ import inspect
 from .common import *
 
 
-def _list_classes(module, type_filter):
+def _list_classes(module, cls_filter):
     found = list()
-
     for name, module_obj in inspect.getmembers(module):
         if inspect.isclass(module_obj):
-            append = not type_filter or type_filter(module_obj)
+            append = not cls_filter or cls_filter(module_obj)
             if append:
                 found.append(module_obj)
     return found
-
-
-def _should_use_module(module):
-    """
-    Checks to make sure that the passed module has the correct hidden
-    variables set.
-    """
-    return hasattr(module, PATH_ATTRUBITE) and len(module.__path__) > 0
 
 
 def _scan_paths_for(mname, paths):
@@ -45,26 +36,15 @@ def _scan_dir(directory):
     return found
 
 
-def list_classes(mname, type_filter=None):
+def _should_use_module_path(module):
     """
-    Attempts to list all of the classes within a specified module. This
-    function works for modules located in the default path as well as
-    extended paths via the sys.meta_path hooks.
-
-    If a type filter is set, it will be called with each class as its
-    parameter. This filter's return value must be interpretable as a
-    boolean. Results that evaluate as True will include the type in the
-    list of returned classes. Results that evaluate as False will exclude
-    the type in the list of returned classes.
+    Checks to make sure that the passed module has the correct hidden
+    variables set.
     """
-    found = list()
-    module = import_module(mname)
-    if inspect.ismodule(module):
-        [found.append(mod) for mod in _list_classes(module, type_filter)]
-    return found
+    return hasattr(module, PATH_ATTRUBITE) and len(module.__path__) > 0
 
 
-def discover_modules(mname):
+def list_modules(mname):
     """
     Attempts to list all of the submodules under a module. This function
     works for modules located in the default path as well as extended paths
@@ -76,7 +56,7 @@ def discover_modules(mname):
     found = list()
     module = import_module(mname)
 
-    if module and _should_use_module(module):
+    if module and _should_use_module_path(module):
         mpath = module.__path__[0]
     else:
         mpaths = sys.path
@@ -89,7 +69,32 @@ def discover_modules(mname):
     return found
 
 
-def discover_classes(module, type_filter=None):
+def list_classes(mname, cls_filter=None):
+    """
+    Attempts to list all of the classes within a specified module. This
+    function works for modules located in the default path as well as
+    extended paths via the sys.meta_path hooks.
+
+    If a class filter is set, it will be called with each class as its
+    parameter. This filter's return value must be interpretable as a
+    boolean. Results that evaluate as True will include the type in the
+    list of returned classes. Results that evaluate as False will exclude
+    the type in the list of returned classes.
+
+    Keyword arguments:
+    mname -- name of the module to inspect
+    cls_filter -- a function to call to determine what classes should be
+                  included (default None)
+
+    """
+    found = list()
+    module = import_module(mname)
+    if inspect.ismodule(module):
+        [found.append(mod) for mod in _list_classes(module, cls_filter)]
+    return found
+
+
+def rlist_classes(module, cls_filter=None):
     """
     Attempts to list all of the classes within a given module namespace.
     This method, unlike list_classes, will recurse into discovered
@@ -101,8 +106,8 @@ def discover_classes(module, type_filter=None):
     list of returned classes. Results that evaluate as False will exclude
     the type in the list of returned classes.
     """
-    classes = list()
-    mnames = discover_modules(module)
+    found = list()
+    mnames = list_modules(module)
     for mname in mnames:
-        [classes.append(c) for c in list_classes(mname, type_filter)]
-    return classes
+        [found.append(c) for c in list_classes(mname, cls_filter)]
+    return found

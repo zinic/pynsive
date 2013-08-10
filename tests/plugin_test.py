@@ -76,19 +76,19 @@ class WhenLoading(unittest.TestCase):
         self.assertEqual(len(classes), 1)
 
     def test_crawling_plugged_in_modules(self):
-        found_modules = pynsive.discover_modules('pynsive_test')
+        found_modules = pynsive.list_modules('pynsive_test')
         self.assertTrue('pynsive_test.test_classes' in found_modules)
 
     def test_crawling_modules(self):
-        found_modules = pynsive.discover_modules('pynsive.plugin')
+        found_modules = pynsive.list_modules('pynsive.plugin')
         self.assertTrue('pynsive.plugin.manager' in found_modules)
         self.assertTrue('pynsive.plugin.loader' in found_modules)
 
     def test_discovering_classes(self):
-        classes = pynsive.discover_classes('pynsive_test')
+        classes = pynsive.list_classes('pynsive_test')
         self.assertEqual(2, len(classes))
 
-    def test_discovering_classes_with_filter(self):
+    def test_recursively_listing_classes_with_filter(self):
         test_module = pynsive.import_module('pynsive_test.test_classes')
 
         def subclasses_only(test_type):
@@ -97,5 +97,5 @@ class WhenLoading(unittest.TestCase):
                 test_type, test_module.PynsiveTestingClass)
             return not same and is_subclass
 
-        classes = pynsive.discover_classes('pynsive_test', subclasses_only)
+        classes = pynsive.rlist_classes('pynsive_test', subclasses_only)
         self.assertEqual(len(classes), 1)

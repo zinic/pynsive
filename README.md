@@ -29,7 +29,22 @@ finally:
     plugin_manager.destroy()
 ```
 
-#### Dynamically Finding Classes in a Single Module by Subtype
+#### Dynamically Listing Modules under a Module
+
+```python
+import pynsive
+import test_module
+
+plugin_manager = pynsive.PluginManager()
+plugin_manager.plug_into('/some/path')
+
+try:
+    found_modules = pynsive.list_modules('ext.plugins')
+finally:
+    plugin_manager.destroy()
+```
+
+#### Dynamically Finding Classes in a Single Module by Subclass
 
 ```python
 import pynsive
@@ -64,7 +79,7 @@ try:
         is_subclass = issubclass(type_to_test, test_module.MyClass)
         return not same and is_subclass
 
-    classes = pynsive.discover_classes('ext.plugins', subclasses_only)
+    classes = pynsive.rlist_classes('ext.plugins', subclasses_only)
 finally:
     plugin_manager.destroy()
 ```

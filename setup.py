@@ -25,9 +25,11 @@ setup(
 "pensive." This library allows a developer to introduce plugins via PEP 302
 and allows for class searching via type and inheritance introspections.
 """),
+    documentation='https://pynsive.readthedocs.org/',
     author='John Hopper',
     author_email='john.hopper@jpserver.net',
     url='https://github.com/zinic/pynsive',
+    download_url='https://pypi.python.org/pypi/pynsive',
     license='Apache 2.0',
     classifiers=[
         'Development Status :: 4 - Beta',
