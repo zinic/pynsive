@@ -9,7 +9,7 @@ For more information on the import process hooks, please see:
 * [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
 
-## Latest Release Notes (0.1.5)
+### Latest Release Notes (0.1.5)
 
 Upgrading to this version has the following changes from the previous
 release (0.1.4).
@@ -18,7 +18,7 @@ release (0.1.4).
 * discover_modules was renamed to list_modules
 
 
-## Usage
+### Usage
 
 #### Creating a Plugin Context
 
