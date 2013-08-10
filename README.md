@@ -20,6 +20,10 @@ release (0.1.4).
 
 ### Usage
 
+#### Documentation
+
+[Pynsive at Readthedocs](https://pynsive.readthedocs.org)
+
 #### Creating a Plugin Context
 
 The plugin context is a nice way of managing what directories you've plugged
