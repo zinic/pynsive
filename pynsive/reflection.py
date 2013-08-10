@@ -55,10 +55,12 @@ def list_modules(mname):
 
     :param mname: the module name to descend into
     """
-    found = list()
     module = import_module(mname)
+    if not module:
+        raise ImportError('Unable to load module {}'.format(mname))
 
-    if module and _should_use_module_path(module):
+    found = list()
+    if _should_use_module_path(module):
         mpath = module.__path__[0]
     else:
         mpaths = sys.path

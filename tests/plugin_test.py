@@ -75,6 +75,10 @@ class WhenLoading(unittest.TestCase):
         classes = pynsive.list_classes('pynsive_test', subclasses_only)
         self.assertEqual(len(classes), 1)
 
+    def test_importing_missing_module(self):
+        with self.assertRaises(ImportError):
+            pynsive.list_modules('this.is.totally.fake.and.a.bad.name')
+
     def test_crawling_plugged_in_modules(self):
         found_modules = pynsive.list_modules('pynsive_test')
         self.assertTrue('pynsive_test.test_classes' in found_modules)
@@ -95,6 +99,9 @@ class WhenLoading(unittest.TestCase):
             same = test_type is not test_module.PynsiveTestingClass
             is_subclass = issubclass(
                 test_type, test_module.PynsiveTestingClass)
+            print('test class - {}'.format(test_type))
+            print(same)
+            print(is_subclass)
             return not same and is_subclass
 
         classes = pynsive.rlist_classes('pynsive_test', subclasses_only)
