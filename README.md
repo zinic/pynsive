@@ -1,7 +1,9 @@
 # Pynsive
 #### Pronounced, "Pensive"
 
-This is a simple plugin library that uses the **sys.meta_path** list along with custom finder and loader definitions to hook into the Python import process.
+This is a simple plugin library that uses the **sys.meta_path** list along
+with custom finder and loader definitions to hook into the Python import
+process.
 
 For more information on the import process hooks, please see:
 
@@ -9,10 +11,10 @@ For more information on the import process hooks, please see:
 * [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
 
-### Latest Release Notes (0.1.5)
+### Latest Release Notes (0.1.6)
 
-Upgrading to this version has the following changes from the previous
-release (0.1.4).
+Upgrading to this version has the following changes from the release version
+0.1.4.
 
 * **discover_classes** was renamed to **rlist_classes**
 * **discover_modules** was renamed to **list_modules**
@@ -27,8 +29,8 @@ release (0.1.4).
 #### Creating a Plugin Context
 
 The plugin context is a nice way of managing what directories you've plugged
-into the **sys.meta_path** variable. Managers may be destroyed when no longer
-needed. Destroying a manager removes all directories that the manager
+into the **sys.meta_path** variable. Managers may be destroyed when no
+longer needed. Destroying a manager removes all directories that the manager
 plugged into from the **sys.meta_path** variable.
 
 ```python
