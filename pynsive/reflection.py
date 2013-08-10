@@ -52,6 +52,8 @@ def list_modules(mname):
 
     This function carries the expectation that the hidden module variable
     '__path__' has been set correctly.
+
+    :param mname: the module name to descend into
     """
     found = list()
     module = import_module(mname)
@@ -81,11 +83,9 @@ def list_classes(mname, cls_filter=None):
     list of returned classes. Results that evaluate as False will exclude
     the type in the list of returned classes.
 
-    Keyword arguments:
-    mname -- name of the module to inspect
-    cls_filter -- a function to call to determine what classes should be
-                  included (default None)
-
+    :param mname: of the module to descend into
+    :param cls_filter: a function to call to determine what classes should be
+                included.
     """
     found = list()
     module = import_module(mname)
@@ -105,6 +105,10 @@ def rlist_classes(module, cls_filter=None):
     boolean. Results that evaluate as True will include the type in the
     list of returned classes. Results that evaluate as False will exclude
     the type in the list of returned classes.
+
+    :param mname: of the module to descend into
+    :param cls_filter: a function to call to determine what classes should be
+                included.
     """
     found = list()
     mnames = list_modules(module)
