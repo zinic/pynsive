@@ -84,7 +84,7 @@ def discover_modules(mname):
 
     if mpath:
         for pmname in _scan_dir(mpath):
-            found_mod = '{}{}{}'.format(mname, MODULE_PATH_SEP, pmname)
+            found_mod = MODULE_PATH_SEP.join((mname, pmname))
             found.append(found_mod)
     return found
 
