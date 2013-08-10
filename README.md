@@ -8,6 +8,16 @@ For more information on the import process hooks, please see:
 * [Python 3 Import Process](http://docs.python.org/3/reference/import.html)
 * [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
+
+## Latest Release Notes (0.1.5)
+
+Upgrading to this version has the following changes from the previous
+release (0.1.4).
+
+* discover_classes was renamed to rlist_classes
+* discover_modules was renamed to list_modules
+
+
 ## Usage
 
 #### Creating a Plugin Context
