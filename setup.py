@@ -18,7 +18,7 @@ def read(relative):
 setup(
     name='pynsive',
     version=read('VERSION')[0],
-    description='A Python plugin and module introspection library.'),
+    description='A Python plugin and module introspection library.',
     long_description=open('README.rst', 'r').read(),
     author='John Hopper',
     author_email='john.hopper@jpserver.net',

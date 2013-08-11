@@ -1,1 +1,4 @@
 include tools/*
+include docs/*
+include VERSION
+include README.rst
