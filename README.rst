@@ -24,7 +24,8 @@ This version has the following changes from release version <=0.1.4
 Documentation
 ~~~~~~~~~~~~~
 
-`Pynsive at Readthedocs <https://pynsive.readthedocs.org>`_
+-  `Getting started with Pynsive <http://www.giantflyingsaucer.com/blog/?p=4634>`_
+-  `Pynsive at Readthedocs <https://pynsive.readthedocs.org>`_
 
 Examples
 ~~~~~~~~
@@ -111,11 +112,6 @@ Unit Tests
 ^^^^^^^^^^
 
 -  `Pynsive Unittest <https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py>`_
-
-Beginner's Tutorial
-~~~~~~~~~~~~~~~~~~~
-
--  `Getting started with Pynsive <http://www.giantflyingsaucer.com/blog/?p=4634>`_
 
 That Legal Thing...
 ~~~~~~~~~~~~~~~~~~~
