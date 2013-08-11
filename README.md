@@ -11,7 +11,7 @@ For more information on the import process hooks, please see:
 * [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
 
-### Latest Release Notes (0.1.6)
+### Latest Release Notes (0.1.7)
 
 Upgrading to this version has the following changes from the release version
 0.1.4.

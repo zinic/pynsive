@@ -25,14 +25,29 @@ def _scan_paths_for(mname, paths):
             return mpath
 
 
-def _scan_dir(directory):
+def _scan_for_modules(directory, recursive=False, prefix=None):
     found = list()
-    module_py = os.path.join(directory, MODULE_INIT_FILE)
-    if os.path.isfile(module_py):
-        # Scan only if there's an __init__.py file
-        for dir_entry in os.listdir(directory):
-            if dir_entry != MODULE_INIT_FILE and dir_entry.endswith('.py'):
-                found.append(dir_entry.rstrip('.py'))
+    # Scan only if there's an __init__.py file
+    if os.path.isfile(os.path.join(directory, MODULE_INIT_FILE)):
+        for entry in os.listdir(directory):
+            # Skip the init file
+            if entry == MODULE_INIT_FILE:
+                continue
+            if entry.endswith('.py'):
+                module = entry.rstrip('.py')
+                if prefix:
+                    found.append(MODULE_PATH_SEP.join((prefix, module)))
+                else:
+                    found.append(module)
+            elif recursive:
+                next_dir = os.path.join(directory, entry)
+                if os.path.isdir(next_dir):
+                    if prefix:
+                        next_mod = MODULE_PATH_SEP.join((prefix, entry))
+                    else:
+                        next_mod = entry
+                    found.append(next_mod)
+                    found.extend(_scan_for_modules(next_dir, True, next_mod))
     return found
 
 
@@ -67,7 +82,36 @@ def list_modules(mname):
         mpath = _scan_paths_for(mname, mpaths)
 
     if mpath:
-        for pmname in _scan_dir(mpath):
+        for pmname in _scan_for_modules(mpath):
+            found_mod = MODULE_PATH_SEP.join((mname, pmname))
+            found.append(found_mod)
+    return found
+
+
+def rlist_modules(mname):
+    """
+    Attempts to the submodules under a module recursively. This function
+    works for modules located in the default path as well as extended paths
+    via the sys.meta_path hooks.
+
+    This function carries the expectation that the hidden module variable
+    '__path__' has been set correctly.
+
+    :param mname: the module name to descend into
+    """
+    module = import_module(mname)
+    if not module:
+        raise ImportError('Unable to load module {}'.format(mname))
+
+    found = list()
+    if _should_use_module_path(module):
+        mpath = module.__path__[0]
+    else:
+        mpaths = sys.path
+        mpath = _scan_paths_for(mname, mpaths)
+
+    if mpath:
+        for pmname in _scan_for_modules(mpath, recursive=True):
             found_mod = MODULE_PATH_SEP.join((mname, pmname))
             found.append(found_mod)
     return found

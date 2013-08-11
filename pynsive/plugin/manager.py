@@ -9,7 +9,6 @@ class PluginManager(object):
     with pynsive. It also provides a hook for removing itself from
     sys.meta_path.
     """
-
     def __init__(self):
         self.finder = ModuleFinder()
         sys.meta_path.append(self.finder)

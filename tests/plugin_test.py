@@ -31,14 +31,22 @@ class WhenLoading(unittest.TestCase):
         testing code into it. The method then spins up a plugin context via
         a pynsive.PluginManager instance.
         """
-
         cls.directory = tempfile.mkdtemp()
+
         cls.module_path = os.path.join(cls.directory, 'pynsive_test')
         os.mkdir(cls.module_path)
         with open(os.path.join(cls.module_path, '__init__.py'), 'w') as f:
             f.write(INIT_PY)
         with open(os.path.join(cls.module_path, 'test_classes.py'), 'w') as f:
             f.write(TEST_CLASSES_PY)
+
+        embedded_module = os.path.join(cls.module_path, 'embedded')
+        os.mkdir(embedded_module)
+        with open(os.path.join(embedded_module, '__init__.py'), 'w') as f:
+            f.write('\n')
+        with open(os.path.join(embedded_module, 'test.py'), 'w') as f:
+            f.write('\n')
+
         cls.plugin_manager = pynsive.PluginManager()
         cls.plugin_manager.plug_into(cls.directory)
 
@@ -46,7 +54,8 @@ class WhenLoading(unittest.TestCase):
     def tearDownClass(cls):
         cls.plugin_manager.destroy()
         if cls.directory:
-            shutil.rmtree(cls.directory)
+            #shutil.rmtree(cls.directory)
+            pass
 
     def test_plugging_into_directory(self):
         """
@@ -55,7 +64,6 @@ class WhenLoading(unittest.TestCase):
         modules. These modules must be available for import via the
         import_module function provided by pynsive.
         """
-
         test_module = pynsive.import_module('pynsive_test.test_classes')
         self.assertTrue(test_module.SUCCESS)
 
@@ -84,9 +92,16 @@ class WhenLoading(unittest.TestCase):
         self.assertTrue('pynsive_test.test_classes' in found_modules)
 
     def test_crawling_modules(self):
-        found_modules = pynsive.list_modules('pynsive.plugin')
-        self.assertTrue('pynsive.plugin.manager' in found_modules)
-        self.assertTrue('pynsive.plugin.loader' in found_modules)
+        found_modules = pynsive.list_modules('pynsive_test')
+        self.assertEqual(1, len(found_modules))
+        self.assertTrue('pynsive_test.test_classes' in found_modules)
+
+    def test_crawling_modules_recursively(self):
+        found_modules = pynsive.rlist_modules('pynsive_test')
+        self.assertEqual(3, len(found_modules))
+        self.assertTrue('pynsive_test.test_classes' in found_modules)
+        self.assertTrue('pynsive_test.embedded' in found_modules)
+        self.assertTrue('pynsive_test.embedded.test' in found_modules)
 
     def test_discovering_classes(self):
         classes = pynsive.list_classes('pynsive_test')

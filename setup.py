@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+
 try:
     from setuptools import setup, find_packages
     from setuptools.command import easy_install
@@ -13,19 +15,11 @@ def read(relative):
     contents = open(relative, 'r').read()
     return [l for l in contents.split('\n') if l != '']
 
-
-def ez_install(package):
-    easy_install.main(["-U", package])
-
-
 setup(
     name='pynsive',
     version=read('VERSION')[0],
-    description=("""A Python plugin and introspection library pronounced,
-"pensive." This library allows a developer to introduce plugins via PEP 302
-and allows for class searching via type and inheritance introspections.
-"""),
-    documentation='https://pynsive.readthedocs.org/',
+    description='A Python plugin and module introspection library.'),
+    long_description=open('README.rst', 'r').read(),
     author='John Hopper',
     author_email='john.hopper@jpserver.net',
     url='https://github.com/zinic/pynsive',
