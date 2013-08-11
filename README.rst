@@ -2,7 +2,7 @@ Pynsive
 =======
 
 Pronounced, "Pensive"
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 This is a simple plugin library that uses the **sys.meta\_path** list
 along with custom finder and loader definitions to hook into the Python
@@ -10,26 +10,24 @@ import process.
 
 For more information on the import process hooks, please see:
 
--  `Python 3 Import
-   Process <http://docs.python.org/3/reference/import.html>`_
+-  `Python 3 Import Process <http://docs.python.org/3/reference/import.html>`_
 -  `PEP-302 <http://www.python.org/dev/peps/pep-0302/>`_
 
-Latest Release Notes (0.1.7)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Latest Release Notes
+~~~~~~~~~~~~~~~~~~~~
 
-Upgrading to this version has the following changes from the release
-version 0.1.4.
+This version has the following changes from release version <=0.1.4
 
 -  **discover\_classes** was renamed to **rlist\_classes**
 -  **discover\_modules** was renamed to **list\_modules**
 
-Usage
-~~~~~
-
 Documentation
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 `Pynsive at Readthedocs <https://pynsive.readthedocs.org>`_
+
+Examples
+~~~~~~~~
 
 Creating a Plugin Context
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,23 +107,21 @@ Dynamically Finding Classes in a Module Tree
     finally:
         plugin_manager.destroy()
 
-Unit Test Examples
-------------------
+Unit Tests
+^^^^^^^^^^
 
--  `Pynsive
-   Unittest <https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py>`_
+-  `Pynsive Unittest <https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py>`_
 
 Beginner's Tutorial
--------------------
+~~~~~~~~~~~~~~~~~~~
 
--  `Getting started with
-   Pynsive <http://www.giantflyingsaucer.com/blog/?p=4634>`_
+-  `Getting started with Pynsive <http://www.giantflyingsaucer.com/blog/?p=4634>`_
 
 That Legal Thing...
--------------------
+~~~~~~~~~~~~~~~~~~~
 
-This software library is released to you under the `Apache License,
-Version 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>`_. See
-`LICENSE <https://github.com/zinic/pynsive/blob/master/LICENSE>`_ for
+This software library is released to you under the
+`Apache License, Version 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>`_
+. See `LICENSE <https://github.com/zinic/pynsive/blob/master/LICENSE>`_ for
 more information.
 

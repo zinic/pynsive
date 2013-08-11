@@ -11,20 +11,19 @@ For more information on the import process hooks, please see:
 * [PEP-302](http://www.python.org/dev/peps/pep-0302/)
 
 
-### Latest Release Notes (0.1.7)
+### Latest Release Notes
 
-Upgrading to this version has the following changes from the release version
-0.1.4.
+This version has the following changes from release version <=0.1.4
 
 * **discover_classes** was renamed to **rlist_classes**
 * **discover_modules** was renamed to **list_modules**
 
+### Documentation
 
-### Usage
+* [Getting started with Pynsive](http://www.giantflyingsaucer.com/blog/?p=4634)
+* [Pynsive at Readthedocs](https://pynsive.readthedocs.org)
 
-#### Documentation
-
-[Pynsive at Readthedocs](https://pynsive.readthedocs.org)
+### Examples
 
 #### Creating a Plugin Context
 
@@ -100,11 +99,8 @@ finally:
     plugin_manager.destroy()
 ```
 
-## Unit Test Examples
+#### Unit Tests
 * [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py)
-
-## Beginner's Tutorial
-* [Getting started with Pynsive](http://www.giantflyingsaucer.com/blog/?p=4634)
 
 ##That Legal Thing...
 
