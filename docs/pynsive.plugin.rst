@@ -1,8 +1,8 @@
 plugin Package
 ==============
 
-:mod:`plugin` Package
----------------------
+:mod:`plugin` Module
+~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: pynsive.plugin
     :members:
@@ -10,7 +10,7 @@ plugin Package
     :show-inheritance:
 
 :mod:`loader` Module
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: pynsive.plugin.loader
     :members:
@@ -18,7 +18,7 @@ plugin Package
     :show-inheritance:
 
 :mod:`manager` Module
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: pynsive.plugin.manager
     :members:

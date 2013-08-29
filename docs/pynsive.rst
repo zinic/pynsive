@@ -1,16 +1,17 @@
-pynsive Package
-===============
+Pynsive API Documentation
+=========================
 
-:mod:`pynsive` Package
-----------------------
 
-.. automodule:: pynsive.__init__
+:mod:`pynsive` Module
+~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: pynsive
     :members:
     :undoc-members:
     :show-inheritance:
 
 :mod:`common` Module
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: pynsive.common
     :members:
@@ -18,17 +19,23 @@ pynsive Package
     :show-inheritance:
 
 :mod:`reflection` Module
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: pynsive.reflection
     :members:
     :undoc-members:
     :show-inheritance:
 
+
 Subpackages
------------
+~~~~~~~~~~~
 
 .. toctree::
-
     pynsive.plugin
 
+
+Indices
+~~~~~~~
+
+* :ref:`genindex`
+* :ref:`modindex`

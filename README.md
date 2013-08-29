@@ -25,7 +25,8 @@ This version has the following changes from release version <=0.1.4
 
 ### Examples
 
-#### Creating a Plugin Context
+#### Creating and Using a Plugin Context
+<a href="#creating-a-plugin-context" />
 
 The plugin context is a nice way of managing what directories you've plugged
 into the **sys.meta_path** variable. Managers may be destroyed when no
@@ -39,12 +40,18 @@ plugin_manager = pynsive.PluginManager()
 plugin_manager.plug_into('/some/path')
 
 try:
-#   Some code goes here
+    import myplugins.module.plugin_a as plugin
+    print('Imported plugin module: {1}', plugin)
 finally:
     plugin_manager.destroy()
 ```
 
 #### Dynamically Listing Submodules
+<a href="#dynamically-listing-submodules" />
+
+**Note:** The list functions in Pynsive **will not** descend into the
+submodules that may exist under the specified module. In order to recursively
+search use the rlist functions.
 
 ```python
 import pynsive
@@ -55,11 +62,17 @@ plugin_manager.plug_into('/some/path')
 
 try:
     found_modules = pynsive.list_modules('ext.plugins')
+    print('Discovered {1} modules.', len(found_modules))
 finally:
     plugin_manager.destroy()
 ```
 
 #### Dynamically Finding Classes in a Module
+<a href="#dynamically-finding-classes-in-a-module" />
+
+**Note:** The list functions in Pynsive **will not** descend into the
+submodules that may exist under the specified module. In order to recursively
+search use the rlist functions.
 
 ```python
 import pynsive
@@ -75,11 +88,17 @@ try:
         return not same and is_subclass
 
     classes = pynsive.list_classes('ext.plugins', subclasses_only)
+    print('Discovered {1} classes.', len(classes))
 finally:
     plugin_manager.destroy()
 ```
 
-#### Dynamically Finding Classes in a Module Tree
+#### Dynamically Finding Classes in a Module and its Submodules
+<a href="#dynamically-finding-classes-in-a-module-tree" />
+
+**Note:** The rlist functions in Pynsive **will** descend into the submodules
+that may exist under the specified module. In order to perform a non-recursive
+listing use the list functions.
 
 ```python
 import pynsive
@@ -93,15 +112,14 @@ try:
         same = type_to_test is not test_module.MyClass
         is_subclass = issubclass(type_to_test, test_module.MyClass)
         return not same and is_subclass
-    # Recursively find classes
+
     classes = pynsive.rlist_classes('ext.plugins', subclasses_only)
+    print('Discovered {1} classes.', len(classes))
 finally:
     plugin_manager.destroy()
 ```
 
-#### Unit Tests
-* [Pynsive Unittest](https://github.com/zinic/pynsive/blob/master/tests/plugin_test.py)
 
 ##That Legal Thing...
 
-This software library is released to you under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html). See [LICENSE](https://github.com/zinic/pynsive/blob/master/LICENSE) for more information.
+This software library is released to you under the [MIT License](http://opensource.org/licenses/MIT). See [LICENSE](https://github.com/zinic/pynsive/blob/master/LICENSE) for more information.
