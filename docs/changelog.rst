@@ -4,7 +4,7 @@ Pynsive Changelog
 Version 0.2.1
 ~~~~~~~~~~~~~
 
-Refactoring and cleanup.
+Documentation changes, updates and a license swap.
 
 - Lots of documentation updates
 - Changed to MIT license
