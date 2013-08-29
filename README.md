@@ -18,10 +18,12 @@ This version has the following changes from release version <=0.1.4
 * **discover_classes** was renamed to **rlist_classes**
 * **discover_modules** was renamed to **list_modules**
 
+
 ### Documentation
 
 * [Getting started with Pynsive](http://www.giantflyingsaucer.com/blog/?p=4634)
 * [Pynsive at Readthedocs](https://pynsive.readthedocs.org)
+
 
 ### Examples
 

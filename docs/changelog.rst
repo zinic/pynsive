@@ -6,6 +6,15 @@ Version 0.2.0
 
 Refactoring and cleanup.
 
+- Lots of documentation updates
+- Changed to MIT license
+
+
+Version 0.2.0
+~~~~~~~~~~~~~
+
+Refactoring and cleanup.
+
 - Fixed a bug where system paths weren't being correctly considering during recursive module descent operations
 
 

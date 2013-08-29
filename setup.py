@@ -27,7 +27,7 @@ setup(
     license='Apache 2.0',
     classifiers=[
         'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: Apache Software License',
+        'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Environment :: Plugins',
         'Programming Language :: Python',
