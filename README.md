@@ -15,6 +15,7 @@ For more information on the import process hooks, please see:
 * [Pynsive at Readthedocs](https://pynsive.readthedocs.org)
 * [Pynsive at Pypi](https://pypi.python.org/pypi/pynsive)
 * [Getting started with Pynsive by Chad Lung](http://www.giantflyingsaucer.com/blog/?p=4634)
+* [Pynsive: A Simple Plugin Library for Python – A Second Look by Chad Lung](http://www.giantflyingsaucer.com/blog/?p=4695)
 
 
 ### Examples
