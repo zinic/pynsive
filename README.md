@@ -1,3 +1,5 @@
+[![Build Status](http://jenkins.projectmeniscus.org/job/Pynsive/badge/icon)](http://jenkins.projectmeniscus.org/job/Pynsive/)
+
 # Pynsive
 #### Pronounced, "Pensive"
 
