@@ -47,6 +47,14 @@ class WhenLoading(unittest.TestCase):
         with open(os.path.join(embedded_module, 'test.py'), 'w') as f:
             f.write('\n')
 
+        # Adding sub-sub module
+        sub_module = os.path.join(embedded_module, 'sub')
+        os.mkdir(sub_module)
+        with open(os.path.join(sub_module, '__init__.py'), 'w') as f:
+            f.write('\n')
+        with open(os.path.join(sub_module, 'other.py'), 'w') as f:
+            f.write(TEST_CLASSES_PY)
+
         cls.plugin_manager = pynsive.PluginManager()
         cls.plugin_manager.plug_into(cls.directory)
 
@@ -98,7 +106,7 @@ class WhenLoading(unittest.TestCase):
 
     def test_crawling_modules_recursively(self):
         found_modules = pynsive.rlist_modules('pynsive_test')
-        self.assertEqual(3, len(found_modules))
+        self.assertEqual(5, len(found_modules))
         self.assertTrue('pynsive_test.test_classes' in found_modules)
         self.assertTrue('pynsive_test.embedded' in found_modules)
         self.assertTrue('pynsive_test.embedded.test' in found_modules)
@@ -106,6 +114,10 @@ class WhenLoading(unittest.TestCase):
     def test_discovering_classes(self):
         classes = pynsive.list_classes('pynsive_test')
         self.assertEqual(2, len(classes))
+
+    def test_recursively_discovering_classes(self):
+        classes = pynsive.rlist_classes('pynsive_test')
+        self.assertEqual(4, len(classes))
 
     def test_recursively_listing_classes_with_filter(self):
         test_module = pynsive.import_module('pynsive_test.test_classes')

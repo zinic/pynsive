@@ -157,7 +157,7 @@ def rlist_classes(module, cls_filter=None):
                 included.
     """
     found = list()
-    mnames = list_modules(module)
+    mnames = rlist_modules(module)
     for mname in mnames:
         [found.append(c) for c in list_classes(mname, cls_filter)]
     return found
