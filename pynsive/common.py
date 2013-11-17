@@ -6,6 +6,7 @@ MODULE_PATH_SEP = '.'
 MODULE_INIT_FILE = '__init__.py'
 NAME_ATTRIBUTE = '__name__'
 PATH_ATTRUBITE = '__path__'
+PYCACHE_FOLDER = '__pycache__'
 
 
 def import_module(module_name):
