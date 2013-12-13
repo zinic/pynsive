@@ -94,7 +94,17 @@ def discover_modules(directory):
 
     :param directory: the directory to search for modules.
     """
-    return _discover_modules(directory)
+    found = list()
+
+    if os.path.isdir(directory):
+        for entry in os.listdir(directory):
+            next_dir = os.path.join(directory, entry)
+
+            # Scan only if there's an __init__.py file
+            if os.path.isfile(os.path.join(next_dir, MODULE_INIT_FILE)):
+                found.append(entry)
+
+    return found
 
 
 def rdiscover_modules(directory):
@@ -108,7 +118,18 @@ def rdiscover_modules(directory):
 
     :param directory: the directory to search for modules.
     """
-    return _discover_modules(directory, recursive=True)
+    found = list()
+
+    if os.path.isdir(directory):
+        for entry in os.listdir(directory):
+            next_dir = os.path.join(directory, entry)
+
+            # Scan only if there's an __init__.py file
+            if os.path.isfile(os.path.join(next_dir, MODULE_INIT_FILE)):
+                modules = _search_for_modules(next_dir, True, entry)
+                found.extend(modules)
+
+    return found
 
 
 def list_modules(mname):

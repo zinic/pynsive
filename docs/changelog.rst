@@ -1,7 +1,7 @@
 Pynsive Changelog
 =================
 
-Version 0.2.3
+Version 0.2.4
 ~~~~~~~~~~~~~
 
 Module searching features exposed.

@@ -66,6 +66,12 @@ class WhenLoading(unittest.TestCase):
             pass
 
     def test_discovering_modules_in_a_directory(self):
+        expected_modules = ['pynsive_test']
+
+        discovered_modules = pynsive.discover_modules(WhenLoading.directory)
+        self.assertEqual(expected_modules, discovered_modules)
+
+    def test_discovering_modules_in_a_directory_recursively(self):
         expected_modules = [
             'pynsive_test.embedded',
             'pynsive_test.embedded.sub',
