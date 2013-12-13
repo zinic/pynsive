@@ -25,38 +25,86 @@ def _scan_paths_for(mname, paths):
             return mpath
 
 
-def _scan_for_modules(directory, recursive=False, prefix=None):
-    found = list()
-    # Scan only if there's an __init__.py file
-    if os.path.isfile(os.path.join(directory, MODULE_INIT_FILE)):
-        for entry in os.listdir(directory):
-            # Skip the init file
-            if entry == MODULE_INIT_FILE:
-                continue
-            if entry.endswith('.py'):
-                module = entry.rstrip('.py')
-                if prefix:
-                    found.append(MODULE_PATH_SEP.join((prefix, module)))
-                else:
-                    found.append(module)
-            elif recursive:
-                next_dir = os.path.join(directory, entry)
-                if os.path.isdir(next_dir):
-                    if prefix:
-                        next_mod = MODULE_PATH_SEP.join((prefix, entry))
-                    else:
-                        next_mod = entry
-                    found.append(next_mod)
-                    found.extend(_scan_for_modules(next_dir, True, next_mod))
-    return found
-
-
 def _should_use_module_path(module):
     """
     Checks to make sure that the passed module has the correct hidden
     variables set.
     """
     return hasattr(module, PATH_ATTRUBITE) and len(module.__path__) > 0
+
+
+def _search_for_modules(directory, recursive=False, prefix=None):
+    found = list()
+
+    # Scan only if there's an __init__.py file
+    if os.path.isfile(os.path.join(directory, MODULE_INIT_FILE)):
+        for entry in os.listdir(directory):
+            # Skip the init file
+            if entry == MODULE_INIT_FILE:
+                continue
+
+            if entry.endswith('.py'):
+                module = entry.rstrip('.py')
+
+                if prefix:
+                    found.append(MODULE_PATH_SEP.join((prefix, module)))
+                else:
+                    found.append(module)
+            elif recursive:
+                next_dir = os.path.join(directory, entry)
+
+                if os.path.isdir(next_dir):
+                    if prefix:
+                        next_mod = MODULE_PATH_SEP.join((prefix, entry))
+                    else:
+                        next_mod = entry
+
+                    found.append(next_mod)
+                    found.extend(_search_for_modules(next_dir, True, next_mod))
+    return found
+
+
+def _discover_modules(directory, recursive=False):
+    found = list()
+
+    if os.path.isdir(directory):
+        for entry in os.listdir(directory):
+            next_dir = os.path.join(directory, entry)
+
+            # Scan only if there's an __init__.py file
+            if os.path.isfile(os.path.join(next_dir, MODULE_INIT_FILE)):
+                modules = _search_for_modules(next_dir, recursive, entry)
+                found.extend(modules)
+
+    return found
+
+
+def discover_modules(directory):
+    """
+    Attempts to list all of the modules and submodules found within a given
+    directory tree. This function searches the top-level of the directory
+    tree for potential python modules and returns a list of candidate names.
+
+    **Note:** This function returns a list of strings representing
+    discovered module names, not the actual, loaded modules.
+
+    :param directory: the directory to search for modules.
+    """
+    return _discover_modules(directory)
+
+
+def rdiscover_modules(directory):
+    """
+    Attempts to list all of the modules and submodules found within a given
+    directory tree. This function recursively searches the directory tree
+    for potential python modules and returns a list of candidate names.
+
+    **Note:** This function returns a list of strings representing
+    discovered module names, not the actual, loaded modules.
+
+    :param directory: the directory to search for modules.
+    """
+    return _discover_modules(directory, recursive=True)
 
 
 def list_modules(mname):
@@ -82,7 +130,7 @@ def list_modules(mname):
         mpath = _scan_paths_for(mname, mpaths)
 
     if mpath:
-        for pmname in _scan_for_modules(mpath):
+        for pmname in _search_for_modules(mpath):
             found_mod = MODULE_PATH_SEP.join((mname, pmname))
             found.append(found_mod)
     return found
@@ -111,7 +159,7 @@ def rlist_modules(mname):
         mpath = _scan_paths_for(mname, mpaths)
 
     if mpath:
-        for pmname in _scan_for_modules(mpath, recursive=True):
+        for pmname in _search_for_modules(mpath, recursive=True):
             found_mod = MODULE_PATH_SEP.join((mname, pmname))
             found.append(found_mod)
     return found

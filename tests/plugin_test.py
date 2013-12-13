@@ -62,8 +62,19 @@ class WhenLoading(unittest.TestCase):
     def tearDownClass(cls):
         cls.plugin_manager.destroy()
         if cls.directory:
-            #shutil.rmtree(cls.directory)
+            shutil.rmtree(cls.directory)
             pass
+
+    def test_discovering_modules_in_a_directory(self):
+        expected_modules = [
+            'pynsive_test.embedded',
+            'pynsive_test.embedded.sub',
+            'pynsive_test.embedded.sub.other',
+            'pynsive_test.embedded.test',
+            'pynsive_test.test_classes']
+
+        discovered_modules = pynsive.rdiscover_modules(WhenLoading.directory)
+        self.assertEqual(expected_modules, discovered_modules)
 
     def test_plugging_into_directory(self):
         """

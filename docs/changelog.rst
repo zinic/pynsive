@@ -1,6 +1,20 @@
 Pynsive Changelog
 =================
 
+Version 0.2.3
+~~~~~~~~~~~~~
+
+Module searching features exposed.
+
+- **discover\_modules** and **rdiscover\_modules** added to allow for the recursive discovery of python modules within a given path.
+
+
+Version 0.2.2
+~~~~~~~~~~~~~
+
+Minor bugfixes related to the recursive discovery of modules.
+
+
 Version 0.2.1
 ~~~~~~~~~~~~~
 
