@@ -43,6 +43,10 @@ def _search_for_modules(directory, recursive=False, prefix=None):
             if entry == MODULE_INIT_FILE:
                 continue
 
+            # Skip the pycache folder
+            if entry == PYCACHE_FOLDER:
+                continue
+
             if entry.endswith('.py'):
                 module = entry.rstrip('.py')
 
