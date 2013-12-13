@@ -80,7 +80,9 @@ class WhenLoading(unittest.TestCase):
             'pynsive_test.test_classes']
 
         discovered_modules = pynsive.rdiscover_modules(WhenLoading.directory)
-        self.assertEqual(expected_modules, discovered_modules)
+
+        for expected in expected_modules:
+            self.assertTrue(expected in discovered_modules)
 
     def test_plugging_into_directory(self):
         """
