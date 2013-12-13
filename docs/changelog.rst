@@ -1,6 +1,12 @@
 Pynsive Changelog
 =================
 
+Version 0.2.5
+~~~~~~~~~~~~~
+
+Bug fix that correctly removes the '.py' extension from paths instead of stripping characters.
+
+
 Version 0.2.4
 ~~~~~~~~~~~~~
 

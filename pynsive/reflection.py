@@ -48,7 +48,7 @@ def _search_for_modules(directory, recursive=False, prefix=None):
                 continue
 
             if entry.endswith('.py'):
-                module = entry.rstrip('.py')
+                module = entry[:len(entry)-3]
 
                 if prefix:
                     found.append(MODULE_PATH_SEP.join((prefix, module)))
