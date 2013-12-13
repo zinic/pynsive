@@ -43,6 +43,26 @@ finally:
     plugin_manager.destroy()
 ```
 
+#### Discovering Python Modules
+<a href="#discovering-python-modules" />
+
+Pynsive allows you to search a given directory tree for potential module
+names to aid in discovery of interesting code. These functions will search
+any directories found under the directory specified for python modules and
+will recurse as specified by their names.
+
+```python
+import pynsive
+
+# Non-recursive search
+found_modules = pynsive.discover_modules('/some/path')
+print('Discovered {1} modules.', len(found_modules))
+
+# Recursive search
+found_modules = pynsive.rdiscover_modules('/some/path')
+print('Discovered {1} modules.', len(found_modules))
+```
+
 #### Dynamically Listing Submodules
 <a href="#dynamically-listing-submodules" />
 
