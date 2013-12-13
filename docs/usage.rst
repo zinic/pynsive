@@ -37,11 +37,11 @@ will recurse as specified by their names.
     import pynsive
 
     # Non-recursive search
-    found_modules = pynsive.discover_modules('ext.plugins')
+    found_modules = pynsive.discover_modules('/some/path')
     print('Discovered {1} modules.', len(found_modules))
 
     # Recursive search
-    found_modules = pynsive.rdiscover_modules('ext.plugins')
+    found_modules = pynsive.rdiscover_modules('/some/path')
     print('Discovered {1} modules.', len(found_modules))
 
 
