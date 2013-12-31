@@ -55,6 +55,11 @@ class WhenLoading(unittest.TestCase):
         with open(os.path.join(sub_module, 'other.py'), 'w') as f:
             f.write(TEST_CLASSES_PY)
 
+        # Adding an empty (without __init__.py) into the package
+        # - Pynsive should ignore this folder
+        garbage_folder = os.path.join(cls.module_path, 'garbage')
+        os.mkdir(garbage_folder)
+
         cls.plugin_manager = pynsive.PluginManager()
         cls.plugin_manager.plug_into(cls.directory)
 

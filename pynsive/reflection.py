@@ -63,8 +63,12 @@ def _search_for_modules(directory, recursive=False, prefix=None):
                     else:
                         next_mod = entry
 
-                    found.append(next_mod)
-                    found.extend(_search_for_modules(next_dir, True, next_mod))
+                    # Make sure it's actually a module
+                    next_mod_init = os.path.join(next_dir, MODULE_INIT_FILE)
+                    if os.path.isfile(next_mod_init):
+                        found.append(next_mod)
+                        found.extend(_search_for_modules(next_dir, True,
+                                                         next_mod))
     return found
 
 
