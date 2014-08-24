@@ -5,9 +5,7 @@ import unittest
 import pynsive
 
 
-INIT_PY = """
-from .test_classes import *
-"""
+INIT_PY = ""
 
 TEST_CLASSES_PY = """
 SUCCESS = True
@@ -100,7 +98,7 @@ class WhenLoading(unittest.TestCase):
         self.assertTrue(test_module.SUCCESS)
 
     def test_listing_classes(self):
-        classes = pynsive.list_classes('pynsive_test')
+        classes = pynsive.list_classes('pynsive_test.test_classes')
         self.assertEqual(len(classes), 2)
 
     def test_listing_classes_with_filter(self):
@@ -112,7 +110,8 @@ class WhenLoading(unittest.TestCase):
                 test_type, test_module.PynsiveTestingClass)
             return not same and is_subclass
 
-        classes = pynsive.list_classes('pynsive_test', subclasses_only)
+        classes = pynsive.list_classes('pynsive_test.test_classes',
+                                       subclasses_only)
         self.assertEqual(len(classes), 1)
 
     def test_importing_missing_module(self):
@@ -136,7 +135,7 @@ class WhenLoading(unittest.TestCase):
         self.assertTrue('pynsive_test.embedded.test' in found_modules)
 
     def test_discovering_classes(self):
-        classes = pynsive.list_classes('pynsive_test')
+        classes = pynsive.list_classes('pynsive_test.test_classes')
         self.assertEqual(2, len(classes))
 
     def test_recursively_discovering_classes(self):
