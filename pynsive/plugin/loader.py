@@ -39,14 +39,15 @@ class ModuleLoader(object):
         self.load_target = load_target
         self.is_pkg = is_pkg
 
-    def _read_code(self):
-        """
-        Simple abstraction to make reading a module file easy.
-        """
-        fin = open(self.load_target, 'r')
-        code = fin.read()
-        fin.close()
-        return code
+    def load_module_py_path(self, module_name, path):
+        file_ext = os.path.splitext(path)[1]
+        module = None
+        if file_ext.lower() == '.py':
+            module = imp.load_source(module_name, path)
+        elif file_ext.lower() == '.pyc':
+            module = imp.load_compiled(module_name, path)
+
+        return module
 
     def load_module(self, module_name):
         """
@@ -63,11 +64,7 @@ class ModuleLoader(object):
         if module_name in sys.modules:
             return sys.modules[module_name]
 
-        code = self._read_code()
-        module = imp.new_module(module_name)
-        module.__file__ = self.load_target
-        module.__loader__ = self
-
+        module = self.load_module_py_path(module_name, self.load_target)
         if self.is_pkg:
             module.__path__ = [self.module_path]
             module.__package__ = module_name
@@ -75,7 +72,6 @@ class ModuleLoader(object):
             module.__package__ = module_name.rpartition('.')[0]
 
         sys.modules[module_name] = module
-        exec(code, module.__dict__)
         return module
 
 
