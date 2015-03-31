@@ -11,7 +11,13 @@ class PluginManager(object):
     """
     def __init__(self):
         self.finder = ModuleFinder()
-        sys.meta_path.append(self.finder)
+
+        # Newer Python versions add other importers which can override our
+        # modules. Making sure we're first on newer Python version.
+        if sys.version_info >= (3, 1, 0):
+            sys.meta_path.insert(0, self.finder)
+        else:
+            sys.meta_path.append(self.finder)
 
     def destroy(self):
         """
